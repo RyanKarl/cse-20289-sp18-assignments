@@ -1,6 +1,6 @@
 Homework 01
 ===========
-Ryan Karl
+By: Ryan Karl
 
 Activity 1: File Operations (2 Points)
 ---------------------------------------------
@@ -18,16 +18,16 @@ Activity 1: File Operations (2 Points)
 	| mv pixmaps/ /tmp/rkarl-pixmaps      | 0.764 seconds |
 	| rm -r /tmp/rkarl-pixmaps            | 0.009 seconds |
 
-1.Both renaming and moving the pixmaps folder use the mv command but the former operation takes 
+1. Both renaming and moving the pixmaps folder use the mv command but the former operation takes 
   significantly less time than the latter. Explain why this is.
 
 	With the former operation, we are already in the destination directory, so we can simply 
 	rewrite the name of the folder.  The latter operation is more complicated, as we must remove
-	the directory at its current location, traverse the directory hierarchy and then copy the
-	directory to its final location, and more time is needed to complete all of these steps.
+	the directory at its current location, and then copy the directory to its final location by creating 
+	new files and writing the data, and more time is needed to complete all of these steps.
 
 
-2.Similarly, explain why removing the /tmp/$USER-pixmaps operation is faster than the move operation.
+2. Similarly, explain why removing the /tmp/$USER-pixmaps operation is faster than the move operation.
 
 	The former operation is faster because we are simply removing the link to the directory.  In
 	contrast, the latter operation requires the multistep process described above, which takes 
@@ -124,7 +124,7 @@ b. Describe a single command that can be used to terminate the process from the 
 	'killall -9 TROLL'
 	
 
-3.Which signals lead to interesting messages that are not taunts or insults?
+3. Which signals lead to interesting messages that are not taunts or insults?
 
 	The combination CTRL-4 gives a message 'Quit (core dumped)' and the majority of the other
 	CTRL-(number or letter) give messages of the form '^(number or letter key pressed)'.
