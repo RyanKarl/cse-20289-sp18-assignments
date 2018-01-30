@@ -13,7 +13,7 @@ In your README.md, describe how you implemented the extract.sh script. In partic
 1. How you checked and handled having no arguments.
 
 	To check this, I used an "if" statement.  I used "[", which is symbolically linked to "test"
-	to determine if the number of arguements was equal to zero.  Note that the variable "$#" is set 
+	to determine if the number of arguments was equal to zero.  Note that the variable "$#" is set 
 	to the number of parameters the script is called with by default, and by using the "-eq" flag
 	to test for equality with the value "0" the statement will return either "true" or "false".
 	If this returns "false" we continue through the script, but if this returns "true", we use the 
@@ -26,11 +26,11 @@ In your README.md, describe how you implemented the extract.sh script. In partic
 	prior experience with these file extensions that the above commands are used to decompress their
 	contents.  Note this was still a trial and error process, and other online resources were consulted,
 	including howtogeek.com, stackoverflow.com, and opensource.com.  After learning which commands were
-	appropreiate for each extension, I implemented a for loop, that iterated through all of the arguements
+	appropriate for each extension, I implemented a for loop, that iterated through all of the arguments
 	passed to the script (using the "$@" variable, as this is its default value), and check if its extension
 	matched one mentioned in the assignment's instructions.  This was done with a case statement. Finally,
-	I had the script execute the proper command on the arguement if a match was detected, and continued
-	looping through each arguement until all were tested.
+	I had the script execute the proper command on the argument if a match was detected, and continued
+	looping through each argument until all were tested.
 
 3. What was the most challenging aspect of writing this script and how you overcame this issue.
 
@@ -71,12 +71,12 @@ In your README.md, describe how you implemented the fortune.sh script. In partic
 
 4. What was the most challenging aspect of writing this script and how you overcame this issue.
 
-	The most challenging part of writing this script was debugging, particulaly figuring out how to properly
+	The most challenging part of writing this script was debugging, particularly figuring out how to properly
 	use "sed" to scan for a single line of text from the "here document" that could be piped into "cowsay". The
 	"sed" command is very robust, and it took time to read its man page along with other online examples pulled
 	from www.lifewire.com, stackexchange.com, and linuxconfig.org among others, to understand how to use it 
-	properly.  Also, it was challenging to understand how to use a "pipe" in conjuntion with a "here table", 
-	and learning the proper systax required a great deal of trial and error.
+	properly.  Also, it was challenging to understand how to use a "pipe" in conjunction with a "here table", 
+	and learning the proper syntax required a great deal of trial and error.
 
 
 Activity 3: Meeting the Oracle (4 Points)
@@ -222,7 +222,7 @@ As you travel to the Oracle, record what you witnessed and what commands you exe
 	This gave me a clue to search for my netid.
 
 
-9. Afterword, I tried using the "find" command in conjuntction with "grep" to find my lockbox:
+9. Afterword, I tried using the "find" command in conjunction with "grep" to find my lockbox:
 
         $ find * | grep rkarl 
         Output: 31a58320/0c9e2d50/b950f0fa/8e85a7aa/82edcce2/rkarl.lockbox
@@ -402,7 +402,7 @@ As you travel to the Oracle, record what you witnessed and what commands you exe
 	This seemed promising.
 
 
-19. Next, I gave gave my netid to the oracle as my name.
+19. Next, I gave my netid to the oracle as my name.
 
         NAME? rkarl
         Output:  ___________________________________
@@ -476,11 +476,11 @@ As you travel to the Oracle, record what you witnessed and what commands you exe
 		  t c     g o X K           j   ;         '   S   L W `     8   U |   & 6 ,   d
 
 
-	I learned a lot completing this excercise, in particular, how to leverage tools
+	I learned a lot completing this exercise, in particular, how to leverage tools
 	like "netcat", "curl", and "telnet" to accomplish networking tasks.  These tools allowed
 	me to scan for open ports on external networked devices, connect to these devices from my
 	terminal, and communicate with them throughout my journey.  Also, I gained experience 
 	with security related tasks, such as password cracking, and made use of the "strings" 
-	command to inspect an execuatable file for useful information during a penetration test.
+	command to inspect an executable file for useful information during a penetration test.
 	
 
