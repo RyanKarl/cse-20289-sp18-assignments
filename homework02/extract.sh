@@ -18,35 +18,27 @@ for ARGUEMENT in "$@"; do
   case $ARGUEMENT in
         *.tgz)
                 tar -xzvf $ARGUEMENT
-                #echo "tgz"
                 ;;
         *.tar.gz)
                 tar -xzvf $ARGUEMENT
-                #echo "tar.gz"
                 ;;
         *.tbz)
                 tar -xjf $ARGUEMENT
-                #echo "tbz"
                 ;;
         *.tar.bz2)
                 tar -xvjf  $ARGUEMENT
-               # echo "tar.bz2"
                 ;;
         *.txz)
                 tar -xf $ARGUEMENT
-               # echo "txz"
                 ;;
         *.tar.xz)
                 tar -xf $ARGUEMENT
-               # echo "tar.xz"
                 ;;
         *.zip)
                 unzip $ARGUEMENT
-               # echo "zip"
                 ;;
         *.jar)
                 unzip $ARGUEMENT
-               # echo "jar"
                 ;;
         *)
                 EXITCODE=1
