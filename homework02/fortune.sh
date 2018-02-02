@@ -1,5 +1,8 @@
 #!/bin/sh
 
+#Set path
+PATH=/afs/nd.edu/user15/pbui/pub/bin/:${PATH}
+
 #Indicate SIGHUP, SIGINT, and SIGTERM will be caught
 trap signal_catch 1 2 15
 
