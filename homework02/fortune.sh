@@ -29,12 +29,9 @@ while [ "$INPUT_STRING" = "" ]
       read INPUT_STRING
    done
 
-#Generate random number from 0-19
-RAND_NUM=`shuf -i0-19 -n1`
-
 #Output message from list based on random number
    #Begin here document
-   sed -n ${RAND_NUM}P <<fortune_message_text | cowsay
+shuf -n 1 <<fortune_message_text | cowsay
    It is certain
    It is decidedly so
    Without a doubt
