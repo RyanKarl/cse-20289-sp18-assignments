@@ -1,8 +1,2 @@
 test:
-      ./test_filters.sh
-
-
-
-
-
-
+        ./test_filters.sh
