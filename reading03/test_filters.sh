@@ -82,11 +82,10 @@ q5_output() {
 root:x:0:0:root:/root:/usr/bin/python
 mysql:x:27:27:MySQL Server:/var/lib/mysql:/usr/bin/python
 xguest:x:500:501:Guest:/home/xguest:/usr/bin/python
-condor:x:108172:40:Condor Batch System:/afs/nd.edu/user37/condor:/usr/b$
+condor:x:108172:40:Condor Batch System:/afs/nd.edu/user37/condor:/usr/bin/python
 lukew:x:522:40:Luke Westby temp access:/var/tmp/lukew:/usr/bin/python
 EOF
 }
-
 
 q5_test() {
     q_test 5 q5_answer q5_output
@@ -98,7 +97,7 @@ q6_output() {
     cat <<EOF
 rtkit:x:499:497:RealtimeKit:/proc:/sbin/nologin
 qpidd:x:497:495:Owner of Qpidd Daemons:/var/lib/qpidd:/sbin/nologin
-uuidd:x:495:487:UUID generator helper daemon:/var/lib/libuuid:/sbin/nol$
+uuidd:x:495:487:UUID generator helper daemon:/var/lib/libuuid:/sbin/nologin
 mailnull:x:47:47::/var/spool/mqueue:/sbin/nologin
 EOF
 }
@@ -121,8 +120,3 @@ q6_test && SCORE=$((SCORE + 1))
 
 echo "   Score $(echo "scale=2; $SCORE / 4.0 * 2.0" | bc )"
 exit $(($SCORE - 6))
-
-
-
-
-
