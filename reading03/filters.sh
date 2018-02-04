@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 q1_answer() {
@@ -18,12 +17,12 @@ q3_answer() {
 
 q4_answer() {
     # TODO: Complete pipeline
-    curl -sL https://yld.me/raw/yWh | awk -F: '$1 == "root" { print $7 $
+    curl -sL https://yld.me/raw/yWh | awk -F: '$1 == "root" { print $7 }'
 }
 
 q5_answer() {
     # TODO: Complete pipeline
-    curl -sL https://yld.me/raw/yWh | sed 's:/bin/bash:/usr/bin/python:$
+    curl -sL https://yld.me/raw/yWh | sed 's:/bin/bash:/usr/bin/python:g;s:/bin/csh:/usr/bin/python:g;s:/bin/tcsh:/usr/bin/python:g' | grep python
 }
 
 q6_answer() {
