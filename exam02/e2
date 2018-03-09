@@ -1,0 +1,41 @@
+#!/usr/bin/env python3
+
+#curl -sL http://yld.me/raw/lmz | cut -d , -f 1 | grep -Eo '^[^jfs].*'
+
+import re
+import os
+import sys
+import requests
+import collections
+
+PATH = "http://yld.me/raw/lmz"
+DELIM = ","
+FIELD = 1
+
+response = requests.get(PATH)
+curl_list = response.text.splitlines()
+
+numlist = []
+
+for i in curl_list:
+    numlist.append(i[-4] + i[-3] + i[-2] + i[-1])
+
+dict = {}
+
+for i in range(0,5):
+    dict[numlist[i]] = curl_list[i]
+
+sort = sorted(dict)
+
+order_list = []
+
+for i in sort:
+    order_list.append(dict[i])
+
+cut_list = [line.split(DELIM)[FIELD - 1] for line in order_list]
+
+tr_list = [line.upper() for line in cut_list]
+
+for val in tr_list:
+    print(val)
+
