@@ -44,6 +44,25 @@ clean:
 
 .SUFFIXES:
 
+%.o:%.c
+		$(CC) $(CFLAGS) -c -o $@ $^
+
+test_node: test_node.o libhuff.a
+		$(LD) $(LDFLAGS) -o $@ $^
+
+test_queue: test_queue.o libhuff.a
+		$(LD) $(LDFLAGS) -o $@ $^
+
+test_tree: test_tree.o libhuff.a
+		$(LD) $(LDFLAGS) -o $@ $^
+
+huff:huff.o libhuff.a
+		$(LD) $(LDFLAGS) -o $@ $^
+
+libhuff.a:node.o queue.o tree.o
+		$(AR) $(ARFLAGS) $@ $^
+
+
 # TODO: Pattern Rule for .c -> .o
 
 # TODO: Rules for libhuff.a, test_node, test_queue, test_tree, huff
