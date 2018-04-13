@@ -10,9 +10,8 @@
     
         DIR *d = opendir(path);
         if (d == NULL){
-            fprintf(stderr, strerror(errno));
-            return 0;
-        } //return false;
+            return false;
+        } 
         struct dirent *e;
         int n = 0;
         while((e = readdir(d)) != NULL)
@@ -31,7 +30,7 @@
         struct stat s;
         int checkTime = lstat(path, &s);
         if (checkTime < 0){ 
-            fprintf(stderr, strerror(errno));
+            printf("Error: %s", strerror(errno));
             return -1;
         }
         time_t t = s.st_mtime;
