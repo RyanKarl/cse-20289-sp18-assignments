@@ -5,14 +5,14 @@
 #include <fnmatch.h> 
 #include <unistd.h> 
 #include <stdlib.h>
+#include <libgen.h>
+
 /* Internal Filter Functions */ 
 
 bool filter_access(const char *path, const struct stat *stat, const Options *options) {
-    //printf("%d", options->access);
     return options->access && access(path, options->access) != 0;
 }
 bool filter_type(const char *path, const struct stat *stat, const Options *options) {
-    //printf("%d %d", options->type, S_IFREG);
     return options->type && (stat->st_mode & S_IFMT) != options->type;
 }
 bool filter_empty(const char *path, const struct stat *stat, const Options *options) {
@@ -27,7 +27,7 @@ bool filter_empty(const char *path, const struct stat *stat, const Options *opti
     return false;
 }
 bool filter_name(const char *path, const struct stat *stat, const Options *options) {
-    return options->name && fnmatch(options->name, path, 0) != 0;
+    return options->name && fnmatch(options->name, strrchr(path, '/'), 0) != 0;
 }
 bool filter_path(const char *path, const struct stat *stat, const Options *options) {
     return options->path && fnmatch(options->path, path, 0) != 0;
@@ -36,7 +36,7 @@ bool filter_perm(const char *path, const struct stat *stat, const Options *optio
     return options->perm && (stat->st_mode & ~S_IFMT) != options->perm;
 }
 bool filter_newer(const char *path, const struct stat *stat, const Options *options) {
-    return options->newer && options->newer <= stat->st_mtime;
+    return options->newer && options->newer >= stat->st_mtime;
 }
 bool filter_uid(const char *path, const struct stat *stat, const Options *options) {
     return options->uid >= 0 && options->uid != stat->st_uid;
@@ -75,11 +75,9 @@ FilterFunc FILTER_FUNCTIONS[] = { /* Array of function pointers. */
     {
         if (FILTER_FUNCTIONS[i](path, &s, options))
         {
-           // printf("%d\n", i);
                 return true;
         }
     }
-    //printf("%s\n", path);
     return false;
 }
 /* vim: set sts=4 sw=4 ts=8 expandtab ft=c: */

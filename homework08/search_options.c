@@ -32,20 +32,12 @@
  */ bool options_parse(int argc, char **argv, char **root, Options *options) {
     int argind = 2;
     
-    //if (argc == 1)
-   // {
-    //    options->path = ".";
-    //        return true;
-    //}
-
     if(argc >= 2 && streq(argv[1], "-help")){   
         options_usage(argv[0], 0);
         return true;
     }
-    //if (!strncmp(argv[1], "-", 1)) options
     while (argind < argc && strlen(argv[argind]) > 1)
     {
-       // printf(argv[argind]);
         if (streq(argv[argind], "-executable"))
         {
             options->access |= X_OK;
@@ -99,7 +91,6 @@
         }
         else
         {
-            //printf("%s\n", argv[argind]);
             return false;
         }
         argind++;

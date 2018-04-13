@@ -19,16 +19,13 @@
         {
             char buffer[BUFSIZ];
             sprintf(buffer, "%s/%s" , root, e->d_name);
-            //printf("%s\n", buffer);
             
             if (!filter(buffer, options))
             {
                 puts(buffer);
-                //puts("John is Awesome!");
             }
             if (e->d_type == DT_DIR)
                 walk(buffer, options);
-            //if (w) printf("", e->d_name);
         }
     }
     closedir(d);
