@@ -12,7 +12,7 @@
     if (checkS < 0) return false;
     if (s.st_size == 0) return true;*/
     DIR *d = opendir(path);
-    if (d == NULL) return true;
+    if (d == NULL) return false;
     struct dirent *e;
     int n = 0;
     while((e = readdir(d)) != NULL)
@@ -32,7 +32,9 @@
     //char buffer[BUFSIZ];
     struct stat s;
     int checkTime = lstat(path, &s);
-    if (checkTime < 0) return EXIT_FAILURE;
+    if (checkTime < 0){ 
+        return -1;
+    }
     time_t t = s.st_mtime;
     
     return t;

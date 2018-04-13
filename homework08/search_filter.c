@@ -12,6 +12,7 @@ bool filter_access(const char *path, const struct stat *stat, const Options *opt
     return options->access && access(path, options->access) != 0;
 }
 bool filter_type(const char *path, const struct stat *stat, const Options *options) {
+    //printf("%d %d", options->type, S_IFREG);
     return options->type && (stat->st_mode & S_IFMT) != options->type;
 }
 bool filter_empty(const char *path, const struct stat *stat, const Options *options) {

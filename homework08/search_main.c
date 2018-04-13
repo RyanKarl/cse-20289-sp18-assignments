@@ -12,9 +12,12 @@
     if (!po) return EXIT_FAILURE;
     /* Check root */
     bool f = filter(root, &options);
-    if (f) return EXIT_FAILURE;
+    if (!f){
+        //return EXIT_FAILURE;
+        printf("%s\n", root);
+    } 
     /* Walk root */
-    printf("%s\n", root);
+    //printf("%s\n", root);
     return walk(root, &options);
     
 }
