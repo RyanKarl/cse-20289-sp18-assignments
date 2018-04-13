@@ -47,19 +47,19 @@ duplicate_options.o: duplicate.h duplicate_options.c
 search: search_filter.o search_main.o search_options.o search_utilities.o search_walk.o
 		$(LD) $(LDFLAGS) -o search search_main.o search_filter.o search_options.o search_utilities.o search_walk.o
 
-search_filter.o: 
+search_filter.o: search.h search_filter.c 
 		$(CC) $(CFLAGS) -o search_filter.o -c search_filter.c		
 
-search_main.o: 
+search_main.o: search.h search_main.c
 		$(CC) $(CFLAGS) -o search_main.o -c search_main.c
 
-search_options.o:
+search_options.o: search.h search_options.c
 		$(CC) $(CFLAGS) -o search_options.o -c search_options.c
 
-search_utilities.o:
+search_utilities.o: search.h search_utilities.c
 		$(CC) $(CFLAGS) -o search_utilities.o -c search_utilities.c
 
-search_walk.o:
+search_walk.o: search.h search_walk.c
 		$(CC) $(CFLAGS) -o search_walk.o -c search_walk.c
 
 
