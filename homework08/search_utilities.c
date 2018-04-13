@@ -12,7 +12,7 @@
     if (checkS < 0) return false;
     if (s.st_size == 0) return true;*/
     DIR *d = opendir(path);
-    if (d == NULL) return false;
+    if (d == NULL) return true;
     struct dirent *e;
     int n = 0;
     while((e = readdir(d)) != NULL)

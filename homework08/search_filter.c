@@ -5,7 +5,10 @@
 #include <fnmatch.h> 
 #include <unistd.h> 
 #include <stdlib.h>
-/* Internal Filter Functions */ bool filter_access(const char *path, const struct stat *stat, const Options *options) {
+/* Internal Filter Functions */ 
+
+bool filter_access(const char *path, const struct stat *stat, const Options *options) {
+    //printf("%d", options->access);
     return options->access && access(path, options->access) != 0;
 }
 bool filter_type(const char *path, const struct stat *stat, const Options *options) {
@@ -59,14 +62,23 @@ FilterFunc FILTER_FUNCTIONS[] = { /* Array of function pointers. */
  * @return Whether or not the path should be filtered out (false means include
  * it in output, true means exclude it from output).
  */ bool filter(const char *path, const Options *options) {
-    printf("%s\n", path);
     struct stat s;
     int checkStat = lstat(path, &s);
-    if (checkStat < 0) return true;
+    if (checkStat < 0) {
+        printf("Error: %s", strerror(errno));
+
+        return true;
+    }
+
     for (int i = 0; i < 9; i++)
     {
-        if (FILTER_FUNCTIONS[i](path, &s, options)) return true;
+        if (FILTER_FUNCTIONS[i](path, &s, options))
+        {
+           // printf("%d\n", i);
+                return true;
+        }
     }
+    //printf("%s\n", path);
     return false;
 }
 /* vim: set sts=4 sw=4 ts=8 expandtab ft=c: */

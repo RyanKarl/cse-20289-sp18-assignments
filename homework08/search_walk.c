@@ -8,26 +8,28 @@
  * @param options User specified filter options.
  * @return Whether or not walking this directory was successful.
  */ int walk(const char *root, const Options *options) {
-    DIR *d = opendir(root);
+     DIR *d = opendir(root);
     if (d == NULL) {
         fprintf(stderr, "Unable to opendir %s: %s\n", root, strerror(errno));
         return EXIT_FAILURE;
     }
     struct dirent *e;
     while ((e = readdir(d))) {
-        if (!streq(".", e->d_name) && !streq("..", e->d_name) && e->d_type == DT_REG)
+        if (!streq(".", e->d_name) && !streq("..", e->d_name))
         {
             char buffer[BUFSIZ];
-            sprintf(buffer, root, e->d_name);
-            walk(buffer, options);
+            sprintf(buffer, "%s/%s" , root, e->d_name);
+            //printf("%s\n", buffer);
+            
+            if (!filter(buffer, options))
+            {
+                puts(buffer);
+                //puts("John is Awesome!");
+            }
+            if (e->d_type == DT_DIR)
+                walk(buffer, options);
             //if (w) printf("", e->d_name);
         }
-        struct stat s;
-        if (stat(e->d_name, &s) < 0) {
-                fprintf(stderr, "%s", strerror(errno));
-         }
-        if (filter(root, options)) printf("%s\n", e->d_name);
-    
     }
     closedir(d);
     return EXIT_SUCCESS;

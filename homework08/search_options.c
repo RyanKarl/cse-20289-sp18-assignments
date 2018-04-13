@@ -30,10 +30,22 @@
  * @param options Pointer to Options structure.
  * @return Whether or not parsing the command-line options was successful.
  */ bool options_parse(int argc, char **argv, char **root, Options *options) {
-    int argind = 1;
+    int argind = 2;
+    
+    //if (argc == 1)
+   // {
+    //    options->path = ".";
+    //        return true;
+    //}
+
+    if(argc >= 2 && streq(argv[1], "-help")){   
+        options_usage(argv[0], 0);
+        return true;
+    }
     //if (!strncmp(argv[1], "-", 1)) options
     while (argind < argc && strlen(argv[argind]) > 1)
     {
+       // printf(argv[argind]);
         if (streq(argv[argind], "-executable"))
         {
             options->access |= X_OK;
@@ -58,15 +70,15 @@
         }
         else if (streq(argv[argind], "-name"))
         {
-            options->name = argv[argind++];
+            options->name = argv[++argind];
         }
         else if (streq(argv[argind], "-path"))
         {
-            options->path = argv[argind++];
+            options->path = argv[++argind];
         }
         else if (streq(argv[argind], "-perm"))
         {
-            options->perm = strtol(argv[argind], NULL, 8);
+            options->perm = strtol(argv[++argind], NULL, 8);
         }
         else if (streq(argv[argind], "-newer"))
         {
@@ -80,7 +92,7 @@
         {
             options->gid = strtol(argv[++argind], NULL, 10);
         }
-        else if (streq(argv[argind], "-h"))
+        else if (streq(argv[argind], "-help"))
         {
             options_usage(argv[0], 0);
             return true;
@@ -88,7 +100,6 @@
         else
         {
             //printf("%s\n", argv[argind]);
-            options_usage(argv[0], 1);
             return false;
         }
         argind++;
