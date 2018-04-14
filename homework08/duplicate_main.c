@@ -57,10 +57,20 @@ int         main(int argc, char *argv[]) {
         int nread;
 
         while ((nread = read(rfd, buffer, options.bytes)) > 0 && options.count > count){
-         
+            
+            if(nread < 0){
+                fprintf(stderr, "Unable to read: %s\n", strerror(errno));
+                return EXIT_FAILURE;
+            }
+
             int nwritten = write(wfd, buffer, nread);
+            if(nwritten < 0){
+                 fprintf(stderr, "Unable to write: %s\n", strerror(errno));
+                 return EXIT_FAILURE;             
+            }
+
             while (nwritten != nread) {
-                nwritten += write(wfd, buffer + nwritten, nread - nwritten);
+                nwritten += write(wfd, buffer + nwritten, nread - nwritten);           
             }
             count++;
         }
