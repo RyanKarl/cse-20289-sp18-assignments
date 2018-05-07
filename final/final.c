@@ -136,24 +136,28 @@ int main(int argc, char *argv[]) {
         /* Connect to remote machine */
         FILE *client_file = socket_dial(HOST, PORT);
         if (client_file == NULL) {
-                            return EXIT_FAILURE;
+                return EXIT_FAILURE;
                                 
             }
+
+        FILE *fp = fopen("filename", "rb");
+        fseek(fp, 0, SEEK_END);
+        int lengthOfFile = ftell(fp);
+        fclose(fp);
 
         // send stuff to the server, to spidey 
         fprintf(client_file, "PUT /rkarl HTTP/1.0\r\n");  // method line 
         fprintf(client_file, "Host: %s\r\n", HOST); //  headers 
         fprintf(client_file, "Content-Type: text/plain\r\n"); //  headers
-        fprintf(client_file, "Content-Length: 6757\r\n"); //  headers 
-        //IMPORTANT*** Used ls -l to determine file size
+        fprintf(client_file, "Content-Length: %d\r\n", lengthOfFile); //  headers 
         fprintf(client_file, "\r\n"); // blank line  
         
         // send  response contents of file
 
-        FILE *fs = fopen("~/exam_scratch/final.c", "r");
+        FILE *fs = fopen("~/Spring_2018/Systems_Programming/cse-20289-sp18-assignments/final/final.c", "r");
             char buffer1[BUFSIZ];
             while (fgets(buffer1, BUFSIZ, fs)) {
-                fputs(buffer1, client_file);
+                fputs(buffer1, stdout);
                 fgets(buffer, BUFSIZ, client_file);              
             }
         fclose(fs);
